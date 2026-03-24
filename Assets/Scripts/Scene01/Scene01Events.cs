@@ -1,23 +1,26 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Scene01Events : MonoBehaviour
 {
-    // variables
+    // MAIN
     public GameObject fadeInScreen;
-    public GameObject charTest;
-    public GameObject npcTest;
+    public GameObject fadeOutScreen;
+    public GameObject charMain;
+    // public GameObject npcTest;
     public GameObject textBox;
     [SerializeField] GameObject charName;
-    
-    [SerializeField] AudioSource audioTest;
+    [SerializeField] AudioSource audio;
 
+    // TEXT
     [SerializeField] string textToSpeak;
     [SerializeField] int currentTextLength;
     [SerializeField] int textLength;
     [SerializeField] GameObject mainTextObject;
 
+    // TRANSITIONING
     [SerializeField] GameObject nextButton;
     [SerializeField] int eventPos = 0;
 
@@ -32,15 +35,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     IEnumerator EventStart() {
-        // event 0
+        StartCoroutine(AudioFading.FadeIn(audio, 2f));
         yield return new WaitForSeconds(1);
         fadeInScreen.SetActive(false);
-        charTest.SetActive(true);
+        charMain.SetActive(true);
         yield return new WaitForSeconds(1);
 
-        // text function here
         mainTextObject.SetActive(true);
-        textToSpeak = "here im talking like this";
+        textToSpeak = "the first line i speak";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
         currentTextLength = textToSpeak.Length;
         textCreator.runTextPrint = true;
@@ -55,14 +57,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     IEnumerator EventOne() {
-        charName.GetComponent<TMPro.TMP_Text>().text = "npcTest";
-
-        yield return new WaitForSeconds(1);
-        npcTest.SetActive(true);
         nextButton.SetActive(false);
-        textBox.SetActive(true);
-        audioTest.Play();
+    
+        yield return new WaitForSeconds(1);
+        charName.GetComponent<TMPro.TMP_Text>().text = "npcTest";
+        // npcTest.SetActive(true);
+        // textBox.SetActive(true);
         
+        audio.Play();
         textToSpeak = "ok and i talk like this";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
         currentTextLength = textToSpeak.Length;
@@ -76,21 +78,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
         eventPos = 2;
     }
 
-    IEnumerator EventTwo() {
-        charName.GetComponent<TMPro.TMP_Text>().text = "the end";
-        textToSpeak = "we are done";
-        textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
-        currentTextLength = textToSpeak.Length;
-        textCreator.runTextPrint = true;
-        eventPos = 1;
+    IEnumerator SceneTransition() {
+        nextButton.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(AudioFading.FadeOut(audio, 2f));
+        fadeOutScreen.SetActive(true);
+        SceneManager.LoadScene(2);
     }
 
     public void NextButton() {
         if (eventPos == 1) {
             StartCoroutine(EventOne());
         }
-        else { // (eventPos == 2)
-            StartCoroutine(EventTwo());
+        if (eventPos == 2) {
+            StartCoroutine(SceneTransition());
         }
     }
 }
