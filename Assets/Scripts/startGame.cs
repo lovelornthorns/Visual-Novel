@@ -21,11 +21,11 @@ public class startGame : MonoBehaviour
     }
 
     IEnumerator GameStart() {
-        yield return new WaitForSeconds(1);
+        
         fadeOutScreen.SetActive(true);
         /* startScreen.SetActive(false);
         startButton.SetActive(false); */
-
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
 
