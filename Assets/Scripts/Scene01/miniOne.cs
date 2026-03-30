@@ -29,6 +29,7 @@ public class miniOne : MonoBehaviour
     public float turn = 0;
     public TMP_Text actionMade;
     public float start = 0;
+    public bool BothLive = true;
     // public float wait = 0;
 
     void Start()
@@ -53,74 +54,44 @@ public class miniOne : MonoBehaviour
         Debug.Log(turn);
         Debug.Log(doer);
 
-        if (start == 0) {
-            start = 1;
-            TurnChoice();
-        } else {
-            // StartCoroutine(ActionReport());
-        }
+        TurnChoice();
         
-        if (enemyHealth <= 0) { // player win msg & animation
-            enemyHealth = 0; // next scene load
-        } else if (playerHealth <= 0) { // player lopse msg
-            playerHealth = 0;
-            // play lose msg + set back to start so redo scene
-        }
-
         /* if (playerHealth > 0 && enemyHealth > 0) {
-            if (turn == 0) {
-                doer = "Player";
-                playerWarning.SetActive(false);
-                playerButtons.SetActive(true);
-                // actionMade.text = "";
-            }
-            else if (turn == 1) {
-                doer = "Enemy";
-                playerWarning.SetActive(false);
-                playerButtons.SetActive(false);
-                // actionMade.text = "";
-                enemyChoice = Random.Range(1, 4);
-                if (enemyChoice == 1) {
-                    PowerUp();
-                } else if (enemyChoice == 2) {
-                    Shield();
-                } else if (enemyChoice == 3) {
-                    Attack();
-                }
-            }
-        }
+            BothLive = true;
+        } else {
+            BothLive = false;
+        } */
+
         if (enemyHealth <= 0) { // player win msg & animation
             enemyHealth = 0; // next scene load
         } else if (playerHealth <= 0) { // player lopse msg
             playerHealth = 0;
             // play lose msg + set back to start so redo scene
-        } */
+        }
     }
 
     public void TurnChoice() {
-        if (start > 0) {
+        /* if (start > 0) {
             StartCoroutine(ActionReport());
+        } */
+        if (turn == 0) {
+            doer = "Player";
+            playerWarning.SetActive(false);
+            playerButtons.SetActive(true);
+            // actionMade.text = "";
         }
-        if (playerHealth > 0 && enemyHealth > 0) {
-            if (turn == 0) {
-                doer = "Player";
-                playerWarning.SetActive(false);
-                playerButtons.SetActive(true);
-                // actionMade.text = "";
-            }
-            else if (turn == 1) {
-                doer = "Enemy";
-                playerWarning.SetActive(false);
-                playerButtons.SetActive(false);
-                // actionMade.text = "";
-                enemyChoice = Random.Range(1, 4);
-                if (enemyChoice == 1) {
-                    PowerUp();
-                } else if (enemyChoice == 2) {
-                    Shield();
-                } else if (enemyChoice == 3) {
-                    Attack();
-                }
+        else if (turn == 1) {
+            doer = "Enemy";
+            playerWarning.SetActive(false);
+            playerButtons.SetActive(false);
+            // actionMade.text = "";
+            enemyChoice = Random.Range(1, 4);
+            if (enemyChoice == 1) {
+                PowerUp();
+            } else if (enemyChoice == 2) {
+                Shield();
+            } else if (enemyChoice == 3) {
+                Attack();
             }
         }
         
