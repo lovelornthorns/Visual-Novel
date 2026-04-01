@@ -13,8 +13,8 @@ public class pausing : MonoBehaviour
     public void pauseClick() {
         pause.SetActive(false);
         mainScreen.SetActive(false);
-        sceneMusic.Pause();
-        pauseMusic.Play();
+        // sceneMusic.Pause();
+        // pauseMusic.Play();
         pauseScreen.SetActive(true);
         unpause.SetActive(true);
         quit.SetActive(true);
