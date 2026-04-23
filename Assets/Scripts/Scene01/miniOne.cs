@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class miniOne : MonoBehaviour
 { 
@@ -35,9 +36,16 @@ public class miniOne : MonoBehaviour
     // public float start = 0;
     // public bool BothLive = true;
     // public float wait = 0;
+    public GameObject mainScreen;
+    public GameObject loseScreen;
+    public GameObject winScreen;
 
     void Start() // zoom into the computer screen while fading into this ; enemy start w 5 shield we start w 1, maxhealth = 15
     {
+        mainScreen.SetActive(true);
+        loseScreen.SetActive(false);
+        winScreen.SetActive(false);
+
         playerHealth = 15;
         playerShield = 1;
         playerPower = 0;
@@ -81,8 +89,10 @@ public class miniOne : MonoBehaviour
 
         if (enemyHealth <= 0) { // player win msg & animation
             enemyHealth = 0; // next scene load + explosion animation (forest)
+            StartCoroutine(Win());
         } else if (playerHealth <= 0) { // player lopse msg
             playerHealth = 0;
+            StartCoroutine(Lose());
             // play lose msg + set back to start so redo scene like reload scene ?
         }
     }
@@ -186,5 +196,21 @@ public class miniOne : MonoBehaviour
     IEnumerator ActionReport() {
         playerButtons.SetActive(false);
         yield return new WaitForSeconds(10f);
+    }
+
+    IEnumerator Win() {
+        mainScreen.SetActive(false);
+        winScreen.SetActive(true);
+        yield return new WaitForSeconds(2f);
+    }
+
+    IEnumerator Lose() {
+        mainScreen.SetActive(false);
+        loseScreen.SetActive(true);
+        yield return new WaitForSeconds(2f);
+    }
+
+    public void Replay() {
+        SceneManager.LoadScene(2);
     }
 }
