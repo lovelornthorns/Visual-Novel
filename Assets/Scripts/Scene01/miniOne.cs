@@ -24,6 +24,7 @@ public class miniOne : MonoBehaviour
     public float enemyHealth;
     public float enemyShield;
     public float enemyPower;
+    public float endam;
     public TMP_Text enemyShieldNum;
     public TMP_Text enemyPowerNum;
     public int enemyChoice;
@@ -50,7 +51,7 @@ public class miniOne : MonoBehaviour
         playerShield = 1;
         playerPower = 0;
         enemyHealth = 15;
-        enemyShield = 5;
+        enemyShield = 3;
         enemyPower = 0;
         maxHealth = 15;
 
@@ -151,7 +152,8 @@ public class miniOne : MonoBehaviour
                 }
             } else if (enemyPower > 0) {
                 if (playerShield > 0) {
-                    playerShield = playerShield - 2;
+                    endam = Random.Range(1, 3);
+                    playerShield = playerShield - endam;
                     if (playerShield < 0) {
                         playerShield = 0;
                         playerHealth = playerHealth - 1;
@@ -160,8 +162,14 @@ public class miniOne : MonoBehaviour
                         actionMade.text = "Enemy attacked! Decreased your shields.";
                     }
                 } else {
-                    playerHealth = playerHealth - 2;
-                    actionMade.text = "Enemy attacked! Did 2 damage.";
+                    if(endam == 2){
+                        playerHealth = playerHealth - 2;
+                        actionMade.text = "Enemy attacked! Did 2 damage.";
+                    }
+                    else if(endam == 1){
+                        playerHealth = playerHealth - 1;
+                        actionMade.text = "Enemy attacked! Did 1 damage.";
+                    }
                 }
             }
         }
