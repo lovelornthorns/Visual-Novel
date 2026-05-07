@@ -7,6 +7,7 @@ public class startGame : MonoBehaviour
 {
     public GameObject startButton;
     public GameObject startScreen;
+    public GameObject quitButton;
     public GameObject fadeOutScreen;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
