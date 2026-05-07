@@ -47,13 +47,13 @@ public class miniOne : MonoBehaviour
         loseScreen.SetActive(false);
         winScreen.SetActive(false);
 
-        playerHealth = 15;
+        playerHealth = 10;
         playerShield = 1;
         playerPower = 0;
-        enemyHealth = 15;
+        enemyHealth = 10;
         enemyShield = 3;
         enemyPower = 0;
-        maxHealth = 15;
+        maxHealth = 10;
 
         // loop while ALL health over 0, ends when EITHER health reaches 0/below (only display 0)
         // player turn; set buttons active then set false after one thing is pressed
@@ -224,6 +224,10 @@ public class miniOne : MonoBehaviour
 
     public void Restart(){
         SceneManager.LoadScene(1);
+    }
+
+    public void QuitGame() {
+        Application.Quit();
     }
 
 }
