@@ -221,4 +221,9 @@ public class miniOne : MonoBehaviour
     public void Replay() {
         SceneManager.LoadScene(2);
     }
+
+    public void Restart(){
+        SceneManager.LoadScene(1);
+    }
+
 }
