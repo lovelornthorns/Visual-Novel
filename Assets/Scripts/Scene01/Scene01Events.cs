@@ -104,7 +104,7 @@ public class Scene01Events : MonoBehaviour
         nextButton.SetActive(false);
 
         charMain.SetActive(true);
-        charMain.GetComponent<RawImage>().texture = charMainSprites[7];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[8];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "Sunlight?";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -172,7 +172,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[15];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "I could've sworn I didn't leave this on...";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -246,10 +246,17 @@ public class Scene01Events : MonoBehaviour
     }
 
     IEnumerator EventSix() {
-        fadeInScreen.SetActive(true);
-        nextButton.SetActive(false);
-
+        fadeOutScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
         charMain.SetActive(false);
+        computerBG.SetActive(false);
+        SThallBG.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        fadeInScreen.SetActive(true);
+        fadeOutScreen.SetActive(false);
+
+        nextButton.SetActive(false);
+        
 
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
         textToSpeak = "(OWW!!!)";
@@ -271,7 +278,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[15];
         charMain.SetActive(true);
 
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
@@ -284,7 +291,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[13];
         charMain.SetActive(true);
 
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
@@ -302,7 +309,6 @@ public class Scene01Events : MonoBehaviour
     }
 
     IEnumerator EventSeven() {
-        fadeInScreen.SetActive(true);
         nextButton.SetActive(false);
 
         charMain.SetActive(false);
@@ -313,7 +319,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[4];
         charMain.SetActive(true);
         mainTextObject.SetActive(true);
 
@@ -333,7 +339,6 @@ public class Scene01Events : MonoBehaviour
     }
 
     IEnumerator EventEight() {
-        fadeInScreen.SetActive(true);
         nextButton.SetActive(false);
 
         charMain.SetActive(false);
@@ -347,6 +352,7 @@ public class Scene01Events : MonoBehaviour
 
         mainTextObject.SetActive(true);
 
+        charMain.GetComponent<RawImage>().texture = charMainSprites[15];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "(oh...)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -357,7 +363,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[15];
         charMain.SetActive(true);
         mainTextObject.SetActive(true);
 
@@ -379,7 +385,7 @@ public class Scene01Events : MonoBehaviour
     IEnumerator EventNine() {
         nextButton.SetActive(false);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[8];
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
         textToSpeak = "wait.";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -390,7 +396,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[11];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "tribbles?";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -401,7 +407,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[10];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "am i...???";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -777,7 +783,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         nextButton.SetActive(true);
-        eventPos = 7;
+        eventPos = 16;
     }
 
 
@@ -808,6 +814,36 @@ public class Scene01Events : MonoBehaviour
             StartCoroutine(EventFive());
         }
         if (eventPos == 6) {
+            StartCoroutine(EventSix());
+        }
+        if (eventPos == 7) {
+            StartCoroutine(EventSeven());
+        }
+        if (eventPos == 8) {
+            StartCoroutine(EventEight());
+        }
+        if (eventPos == 9) {
+            StartCoroutine(EventNine());
+        }
+        if (eventPos == 10) {
+            StartCoroutine(EventTen());
+        }
+        if (eventPos == 11) {
+            StartCoroutine(EventEleven());
+        }
+        if (eventPos == 12) {
+            StartCoroutine(EventTwelve());
+        }
+        if (eventPos == 13) {
+            StartCoroutine(EventThirteen());
+        }
+        if (eventPos == 14) {
+            StartCoroutine(EventFourteen());
+        }
+        if (eventPos == 15) {
+            StartCoroutine(EventFifteen());
+        }
+        if (eventPos == 16) {
             StartCoroutine(SceneTransition());
         }
     }
