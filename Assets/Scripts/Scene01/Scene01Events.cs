@@ -22,6 +22,10 @@ public class Scene01Events : MonoBehaviour
     public GameObject STbridgeBG;
     public GameObject STviewscreenBG;
     public GameObject STtransporterBG;
+    public GameObject spock;
+    public GameObject kirk;
+    public GameObject BWcat;
+    public GameObject COLORcat;
 
     // TEXT
     [SerializeField] string textToSpeak;
@@ -304,6 +308,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
+        fadeInScreen.SetActive(false);
         nextButton.SetActive(true);
         eventPos = 7;
     }
@@ -323,6 +328,8 @@ public class Scene01Events : MonoBehaviour
         charMain.SetActive(true);
         mainTextObject.SetActive(true);
 
+        BWcat.SetActive(true);
+
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "!!! Kitty!!!";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -341,8 +348,10 @@ public class Scene01Events : MonoBehaviour
     IEnumerator EventEight() {
         nextButton.SetActive(false);
 
+        BWcat.SetActive(false);
+        COLORcat.SetActive(true);
+
         charMain.SetActive(false);
-        computerBG.SetActive(true);
 
         mainTextObject.SetActive(false);
         yield return new WaitForSeconds(0.05f);
@@ -384,6 +393,7 @@ public class Scene01Events : MonoBehaviour
 
     IEnumerator EventNine() {
         nextButton.SetActive(false);
+        COLORcat.SetActive(false);
 
         charMain.GetComponent<RawImage>().texture = charMainSprites[8];
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
@@ -440,7 +450,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         charMain.SetActive(true);
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[13];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "!!!";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -451,7 +461,6 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.SetActive(false);
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
         textToSpeak = "(you stand at attention. your legs shake a little.)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -462,7 +471,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        kirk.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "???";
         textToSpeak = "It's all hands on deck! What are you doing standing around?";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -484,7 +493,7 @@ public class Scene01Events : MonoBehaviour
 
         mainTextObject.SetActive(true);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[12];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "Captain Kirk???";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -518,7 +527,8 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        kirk.SetActive(false);
+        spock.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "???";
         textToSpeak = "Captain. We must make it to the bridge immediately.";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -565,7 +575,8 @@ public class Scene01Events : MonoBehaviour
 
         charMain.SetActive(false);
 
-        charSide.SetActive(true);
+        spock.SetActive(false);
+        kirk.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "Kirk";
         textToSpeak = "Star...? I don't recognize you. And why aren't you in uniform?";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -575,8 +586,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
-
-        charSide.SetActive(true);
+        
         charName.GetComponent<TMPro.TMP_Text>().text = "Kirk";
         textToSpeak = "And your clothes are...";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -587,7 +597,8 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        kirk.SetActive(false);
+        spock.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "Spock";
         textToSpeak = "Captain, this person seems to be in early to mid 21st century clothing.";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -598,7 +609,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        spock.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "Spock";
         textToSpeak = "So unless they're a history fanatic...";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -616,7 +627,8 @@ public class Scene01Events : MonoBehaviour
     IEnumerator EventThirteen() {
         nextButton.SetActive(false);
 
-        charSide.SetActive(false);
+        spock.SetActive(false);
+        kirk.SetActive(false);
         charMain.SetActive(true);
 
         mainTextObject.SetActive(true);
@@ -639,7 +651,7 @@ public class Scene01Events : MonoBehaviour
     IEnumerator EventFourteen() {
         nextButton.SetActive(false);
 
-        charSide.SetActive(false);
+        spock.SetActive(false);
         charMain.SetActive(true);
 
         mainTextObject.SetActive(true);
@@ -667,7 +679,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        spock.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "Spock";
         textToSpeak = "Captain, it is imperative that we report to the bridge immediately.";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -678,7 +690,8 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charSide.SetActive(true);
+        spock.SetActive(false);
+        kirk.SetActive(true);
         charName.GetComponent<TMPro.TMP_Text>().text = "Kirk";
         textToSpeak = "That's right, time is of the essence, Mr. Spock.";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -703,6 +716,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         charMain.SetActive(false);
+        kirk.SetActive(false);
 
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
         textToSpeak = "(you follow.)";
@@ -719,12 +733,20 @@ public class Scene01Events : MonoBehaviour
     }
 
     IEnumerator EventFifteen() {
+        fadeOutScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        charMain.SetActive(false);
+        spock.SetActive(false);
+        kirk.SetActive(false);
+        SThallBG.SetActive(false);
+        STliftBG.SetActive(true);
+        yield return new WaitForSeconds(1f);
         fadeInScreen.SetActive(true);
-        nextButton.SetActive(false);
+        fadeOutScreen.SetActive(false);
 
         charMain.SetActive(true);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[8];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "(...)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -735,7 +757,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[6];
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
         textToSpeak = "(Why is the ship in danger anyway?)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
@@ -747,7 +769,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         charName.GetComponent<TMPro.TMP_Text>().text = " ";
-        textToSpeak = "(you land on your but. hard. your vision is a blurry.)";
+        textToSpeak = "(Kirk and Spock explain the situation, saying ROmulan envoys have disabled the ship/s warp drive and have been attacking.)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
         currentTextLength = textToSpeak.Length;
         textCreator.runTextPrint = true;
@@ -759,8 +781,8 @@ public class Scene01Events : MonoBehaviour
         charMain.GetComponent<RawImage>().texture = charMainSprites[9];
         charMain.SetActive(true);
 
-        charName.GetComponent<TMPro.TMP_Text>().text = "You";
-        textToSpeak = "ugh.... where am i?";
+        charName.GetComponent<TMPro.TMP_Text>().text = " ";
+        textToSpeak = "(They say they need your help!)";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
         currentTextLength = textToSpeak.Length;
         textCreator.runTextPrint = true;
@@ -769,11 +791,11 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
-        charMain.GetComponent<RawImage>().texture = charMainSprites[9];
+        charMain.GetComponent<RawImage>().texture = charMainSprites[3];
         charMain.SetActive(true);
 
         charName.GetComponent<TMPro.TMP_Text>().text = "You";
-        textToSpeak = "kitty?";
+        textToSpeak = "Yeah, I can help!";
         textBox.GetComponent<TMPro.TMP_Text>().text = textToSpeak;
         currentTextLength = textToSpeak.Length;
         textCreator.runTextPrint = true;
@@ -782,6 +804,7 @@ public class Scene01Events : MonoBehaviour
         yield return new WaitUntil(() => textLength == currentTextLength);
         yield return new WaitForSeconds(0.5f);
 
+        fadeInScreen.SetActive(false);
         nextButton.SetActive(true);
         eventPos = 16;
     }
